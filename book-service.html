@@ -678,7 +678,12 @@
 
                         <!-- SUBMISSION STATUS -->
 
-                        <div class="booking-status" role="status">
+                        
+                            <div
+                               class="booking-status"
+                                id="bookingStatus"
+                               role="status"
+                               aria-live="polite">
 
                             <strong>Booking system under development.</strong>
 
@@ -693,15 +698,23 @@
 
                         <!-- SUBMIT BUTTON -->
 
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            style="width: 100%; margin-top: 25px;"
-                            disabled>
-
-                            Booking Submission Coming Soon
+                    
+                    
+                    
+                        
+                
 
                         </button>
+                           <button
+                            type="submit"
+                            id="bookingSubmitButton"
+                            class="btn btn-primary"
+                           style="width: 100%; margin-top: 25px;"
+                            disabled>
+
+                          Checking Your Account...
+
+                       </button>     
 
                     </form>
 
@@ -1025,6 +1038,7 @@
         
 
 </script>
-
+    <script type="module" src="asset/js/booking.js"></script>
+<script src="asset/js/site.js"></script>
 </body>
 </html>
