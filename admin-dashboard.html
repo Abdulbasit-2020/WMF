@@ -1,0 +1,564 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8"><meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+  <meta name="robots" content="noindex, nofollow">  <title>Admin Dashboard | Wise Media Freelance</title>  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6fa;
+      color: #222;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #14213d;
+      color: white;
+      padding: 25px 18px;
+      overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .sidebar p {
+      font-size: 12px;
+      color: #cbd5e1;
+      margin-bottom: 35px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 13px;
+      margin-bottom: 7px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background: #2563eb;
+    }
+
+    .logout {
+      margin-top: 35px;
+      width: 100%;
+      padding: 12px;
+      background: #dc2626;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .main {
+      margin-left: 250px;
+      padding: 30px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .topbar h1 {
+      font-size: 25px;
+    }
+
+    .admin-info {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .welcome {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    .welcome h2 {
+      margin-bottom: 10px;
+    }
+
+    .welcome p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    .card h3 {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .card strong {
+      font-size: 27px;
+      color: #14213d;
+    }
+
+    .section {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    .section h2 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .section p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .loading {
+      color: #2563eb;
+      font-size: 13px;
+    }
+
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 20px;
+    }
+
+    .management-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+    }
+
+    .management-table th,
+    .management-table td {
+      padding: 13px;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 13px;
+    }
+
+    .management-table th {
+      background: #f4f6fa;
+      color: #14213d;
+      font-weight: bold;
+    }
+
+    .management-table td {
+      color: #444;
+    }
+
+    .management-table tbody tr:hover {
+      background: #f9fafb;
+    }
+
+    .classification-note {
+      margin-top: 10px;
+      font-size: 12px !important;
+      color: #777 !important;
+    }
+
+    /* CLIENT SEARCH */
+
+    .table-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      width: 100%;
+      max-width: 380px;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+    }
+
+    @media (max-width: 900px) {
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+    }
+
+    @media (max-width: 650px) {
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+
+      .sidebar p {
+        margin-bottom: 15px;
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 18px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .card strong {
+        font-size: 22px;
+      }
+
+      .topbar h1 {
+        font-size: 21px;
+      }
+
+      .section {
+        padding: 18px;
+      }
+
+      .search-input {
+        max-width: 100%;
+      }
+
+    }
+
+  </style></head><body>  <!-- ADMIN SIDEBAR -->  <aside class="sidebar"><h2>WISE MEDIA</h2>
+
+<p>Freelance Administration</p>
+
+<nav>
+
+  <a href="#overview" class="active">
+    Dashboard Overview
+  </a>
+
+  <a href="#clients">
+    Clients
+  </a>
+
+  <a href="#authors">
+    Authors
+  </a>
+
+  <a href="#orders">
+    Order Requests
+  </a>
+
+  <a href="#services">
+    Services
+  </a>
+
+  <a href="#settings">
+    Account Settings
+  </a>
+
+</nav>
+
+<button id="adminLogoutButton" class="logout">
+  Logout
+</button>
+
+  </aside>  <!-- MAIN DASHBOARD -->  <main class="main"><!-- TOPBAR -->
+
+<header class="topbar">
+
+  <h1>Admin Dashboard</h1>
+
+  <div class="admin-info">
+
+    <div id="adminName">
+      Loading owner...
+    </div>
+
+    <div id="adminEmail">
+      Loading email...
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- WELCOME -->
+
+<section class="welcome">
+
+  <h2>Welcome to WMF Administration</h2>
+
+  <p>
+    Manage your clients, authors, bookings and
+    freelance operations from one central dashboard.
+  </p>
+
+</section>
+
+
+<!-- DASHBOARD STATISTICS -->
+
+<section class="stats" id="overview">
+
+  <div class="card">
+
+    <h3>Total Clients</h3>
+
+    <strong id="totalClients">—</strong>
+
+  </div>
+
+  <div class="card">
+
+    <h3>Total Authors</h3>
+
+    <strong id="totalAuthors">—</strong>
+
+  </div>
+
+  <div class="card">
+
+    <h3>Order Requests</h3>
+
+    <strong id="totalOrders">—</strong>
+
+  </div>
+
+  <div class="card">
+
+    <h3>Pending Orders</h3>
+
+    <strong id="pendingOrders">—</strong>
+
+  </div>
+
+</section>
+
+
+<!-- CLIENT MANAGEMENT -->
+
+<section class="section" id="clients">
+
+  <h2>Client Management</h2>
+
+  <p>
+    Manage accounts that have requested non-writing services.
+  </p>
+
+  <p id="clientsStatus" class="loading">
+    Loading client accounts...
+  </p>
+
+  <!-- CLIENT SEARCH -->
+
+  <div class="table-toolbar">
+
+    <input
+      type="search"
+      id="clientSearchInput"
+      class="search-input"
+      placeholder="Search by name, email, phone or service..."
+      aria-label="Search client accounts"
+    >
+
+  </div>
+
+  <!-- CLIENT TABLE -->
+
+  <div class="table-wrapper">
+
+    <table class="management-table">
+
+      <thead>
+
+        <tr>
+
+          <th>Full Name</th>
+
+          <th>Email Address</th>
+
+          <th>Phone Number</th>
+
+          <th>Services Requested</th>
+
+          <th>Bookings</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody id="clientsTableBody">
+
+        <tr>
+
+          <td colspan="5">
+            Loading client records...
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <p class="classification-note">
+    A person who requests both writing and non-writing
+    services can appear in both management sections.
+  </p>
+
+</section>
+
+
+<!-- AUTHOR MANAGEMENT -->
+
+<section class="section" id="authors">
+
+  <h2>Author Management</h2>
+
+  <p>
+    Accounts that have requested services under
+    the Writing Services category.
+  </p>
+
+  <p id="authorsStatus" class="loading">
+    Loading author accounts...
+  </p>
+
+  <div class="table-wrapper">
+
+    <table class="management-table">
+
+      <thead>
+
+        <tr>
+
+          <th>Full Name</th>
+
+          <th>Email Address</th>
+
+          <th>Phone Number</th>
+
+          <th>Writing Services</th>
+
+          <th>Bookings</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody id="authorsTableBody">
+
+        <tr>
+
+          <td colspan="5">
+            Loading author records...
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <p class="classification-note">
+    Only accounts with Writing Services bookings
+    are classified as Authors.
+  </p>
+
+</section>
+
+
+<!-- ORDER MANAGEMENT -->
+
+<section class="section" id="orders">
+
+  <h2>Order Requests</h2>
+
+  <p id="ordersStatus" class="loading">
+    Loading booking statistics...
+  </p>
+
+</section>
+
+
+<!-- SERVICE MANAGEMENT -->
+
+<section class="section" id="services">
+
+  <h2>Service Management</h2>
+
+  <p>
+    Service management will be integrated here.
+  </p>
+
+</section>
+
+
+<!-- ADMINISTRATOR SETTINGS -->
+
+<section class="section" id="settings">
+
+  <h2>Administrator Account</h2>
+
+  <p id="adminAccountStatus">
+    Verifying administrator account...
+  </p>
+
+</section>
+
+  </main>  <!-- ADMIN DASHBOARD SCRIPT -->  <script
+    type="module"
+    src="./asset/js/admin-dashboard.js">
+  </script></body></html>
