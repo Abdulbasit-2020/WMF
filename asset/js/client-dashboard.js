@@ -69,7 +69,20 @@ async function loadClientProfile(user) {
         }
 
         const profile = userSnapshot.data();
+        
+if (profile.role !== "client") {
 
+    showNotice(
+        "<strong>Access denied.</strong><br>" +
+        "This dashboard is only available to client accounts."
+    );
+
+    await signOut(auth);
+
+    window.location.replace("login.html");
+
+    return;
+}
         // Display full name
         const fullName = profile.fullName || user.displayName || "Client";
 
