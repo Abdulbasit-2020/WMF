@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Client Login | Wise Media Freelance</title>
+
+    <meta name="description"
+        content="Sign in to your Wise Media Freelance client account to manage projects and track orders.">
+
+    <link rel="stylesheet" href="asset/css/styles.css">
+
+    <style>
+        .auth-section {
+            min-height: 75vh;
+            padding: 80px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f8f8;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 480px;
+            padding: 45px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.07);
+        }
+
+        .auth-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-heading h1 {
+            margin-bottom: 12px;
+        }
+
+        .auth-heading p {
+            color: #777;
+            line-height: 1.7;
+        }
+
+        .auth-form .form-group {
+            margin-bottom: 22px;
+        }
+
+        .auth-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .auth-form input:focus {
+            outline: none;
+            border-color: #b99a5b;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 75px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: #9a7a3d;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .auth-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            background: #b99a5b;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .auth-notice {
+            margin-top: 20px;
+            padding: 14px;
+            background: #fff8e9;
+            border-left: 4px solid #b99a5b;
+            color: #6b5731;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+
+        .auth-switch a {
+            color: #a18449;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        .forgot-password {
+            display: block;
+            margin-top: 10px;
+            text-align: right;
+            font-size: 13px;
+            color: #a18449;
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .auth-section {
+                padding: 45px 15px;
+            }
+
+            .auth-container {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-container">
+
+            <a href="index.html" class="logo">
+                Wise Media Freelance
+            </a>
+
+            <button class="menu-toggle"
+                id="menuToggle"
+                aria-label="Toggle navigation"
+                aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="book-service.html">Book a Service</a>
+                <a href="contact.html">Contact</a>
+                <a href="track-order.html">Track Order</a>
+                <a href="register.html">Create Account</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- LOGIN SECTION -->
+    <main>
+
+        <section class="auth-section">
+
+            <div class="auth-container">
+
+                <div class="auth-heading">
+                    <h1>Welcome Back</h1>
+
+                    <p>
+                        Sign in to your Wise Media Freelance account
+                        to access your client dashboard and projects.
+                    </p>
+                </div>
+
+
+                <form class="auth-form" id="loginForm">
+
+                    <div class="form-group">
+
+                        <label for="email">Email Address</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            autocomplete="email"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="password">Password</label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required>
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-target="password">
+                                Show
+                            </button>
+
+                        </div>
+
+                        <a href="#" class="forgot-password"
+                            aria-disabled="true">
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="auth-button"
+                        disabled>
+                        Login Coming Soon
+                    </button>
+
+
+                    <div class="auth-notice">
+                        <strong>Login is not active yet.</strong>
+                        The secure authentication system is still
+                        being configured. Sign-in and password recovery
+                        will become available after Firebase integration.
+                    </div>
+
+                </form>
+
+
+                <div class="auth-switch">
+                    Don't have an account?
+                    <a href="register.html">Create an account</a>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div class="footer-brand">
+                    <h3>Wise Media Freelance</h3>
+
+                    <p>
+                        Professional freelance solutions designed
+                        to help individuals and businesses communicate,
+                        create and grow.
+                    </p>
+                </div>
+
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Our Services</a>
+                    <a href="book-service.html">Book a Service</a>
+                </div>
+
+
+                <div class="footer-links">
+                    <h4>Client Area</h4>
+
+                    <a href="register.html">Create Account</a>
+                    <a href="login.html">Login</a>
+                    <a href="track-order.html">Track Order</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span>
+                    Wise Media Freelance. All rights reserved.
+                </p>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="asset/js/site.js"></script>
+
+    <script>
+        document.querySelectorAll(".password-toggle").forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const input = document.getElementById(
+                    button.dataset.target
+                );
+
+                if (input.type === "password") {
+                    input.type = "text";
+                    button.textContent = "Hide";
+                } else {
+                    input.type = "password";
+                    button.textContent = "Show";
+                }
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>
