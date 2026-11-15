@@ -679,21 +679,36 @@
                         <!-- SUBMISSION STATUS -->
 
                         
-                            <div
-                               class="booking-status"
-                                id="bookingStatus"
-                               role="status"
-                               aria-live="polite">
 
-                            <strong>Booking system under development.</strong>
+<div
+    class="booking-status"
+    id="bookingStatus"
+    role="status"
+    aria-live="polite">
 
-                            <br><br>
+    <strong>Checking your client account...</strong>
 
-                            The booking form is currently being prepared
-                            for backend integration. Your information
-                            will not be submitted or stored at this stage.
+    <br><br>
 
-                        </div>
+    Please wait while we verify your account
+    before enabling booking submission.
+
+</div>
+
+
+<!-- SUBMIT BUTTON -->
+
+<button
+    type="submit"
+    id="bookingSubmitButton"
+    class="btn btn-primary"
+    style="width: 100%; margin-top: 25px;"
+    disabled>
+
+    Checking Your Account...
+
+</button>
+                            
 
 
                         <!-- SUBMIT BUTTON -->
@@ -1039,6 +1054,6 @@
 
 </script>
     <script type="module" src="asset/js/booking.js"></script>
-<script src="asset/js/site.js"></script>
+
 </body>
 </html>
