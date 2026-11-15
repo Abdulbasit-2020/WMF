@@ -241,7 +241,8 @@
                 <a href="book-service.html">Book a Service</a>
                 <a href="track-order.html">Track Order</a>
                 <a href="contact.html">Contact</a>
-                <a href="login.html">Login</a>
+            
+                <a href="#" id="logoutButton">Logout</a>
             </nav>
 
         </div>
@@ -269,7 +270,7 @@
                     </p>
 
                     <span class="dashboard-status">
-                        DASHBOARD PREVIEW
+                        CLIENT ACCOUNT 
                     </span>
 
                 </div>
@@ -392,32 +393,37 @@
 
 
                         <!-- ACCOUNT INFORMATION -->
-                        <div class="dashboard-panel">
+                        
+                        <!-- ACCOUNT INFORMATION -->
+<div class="dashboard-panel">
 
-                            <h2>Account Information</h2>
-                            <div class="account-detail">
-    <span>Full Name</span>
-    <strong id="clientFullName">Loading...</strong>
+    <h2>Account Information</h2>
+
+    <div class="account-details">
+
+        <div class="account-detail">
+            <span>Full Name</span>
+            <strong id="clientFullName">Loading...</strong>
+        </div>
+
+        <div class="account-detail">
+            <span>Email Address</span>
+            <strong id="clientEmail">Loading...</strong>
+        </div>
+
+        <div class="account-detail">
+            <span>Account Status</span>
+            <strong id="clientStatus">Loading...</strong>
+        </div>
+
+        <div class="account-detail">
+            <span>Member Since</span>
+            <strong id="memberSince">Loading...</strong>
+        </div>
+
+    </div>
+
 </div>
-
-<div class="account-detail">
-    <span>Email Address</span>
-    <strong id="clientEmail">Loading...</strong>
-</div>
-
-<div class="account-detail">
-    <span>Account Status</span>
-    <strong id="clientStatus">Loading...</strong>
-</div>
-
-<div class="account-detail">
-    <span>Member Since</span>
-    <strong id="memberSince">Loading...</strong>
-</div>
-
-                            
-
-                        </div>
 
 
                         <!-- QUICK LINKS -->
@@ -443,10 +449,11 @@
                                     Contact Support
                                 </a>
 
-                                <a href="login.html">
-                                    Client Login
-                                </a>
-
+                                
+                                <a href="book-service.html">
+                                  Book Another Service
+                               </a>
+                        
                             </div>
 
                         </div>
@@ -512,7 +519,7 @@
 
                     <a href="register.html">Create Account</a>
                     
-                    <a href="#" id="logoutButton">Logout</a>
+                    
                     <a href="client-dashboard.html">Dashboard</a>
                     <a href="track-order.html">Track Order</a>
 
