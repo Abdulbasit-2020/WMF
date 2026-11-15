@@ -259,7 +259,8 @@
                 <!-- WELCOME -->
                 <div class="dashboard-welcome">
 
-                    <h1>Client Dashboard</h1>
+                
+                    <h1>Welcome, <span id="welcomeName">Client</span></h1>
 
                     <p>
                         Welcome to your Wise Media Freelance client
@@ -394,30 +395,27 @@
                         <div class="dashboard-panel">
 
                             <h2>Account Information</h2>
+                            <div class="account-detail">
+    <span>Full Name</span>
+    <strong id="clientFullName">Loading...</strong>
+</div>
 
-                            <div class="account-details">
+<div class="account-detail">
+    <span>Email Address</span>
+    <strong id="clientEmail">Loading...</strong>
+</div>
 
-                                <div class="account-detail">
-                                    <span>Full Name</span>
-                                    <strong>Loading...</strong>
-                                </div>
+<div class="account-detail">
+    <span>Account Status</span>
+    <strong id="clientStatus">Loading...</strong>
+</div>
 
-                                <div class="account-detail">
-                                    <span>Email Address</span>
-                                    <strong>Loading...</strong>
-                                </div>
+<div class="account-detail">
+    <span>Member Since</span>
+    <strong id="memberSince">Loading...</strong>
+</div>
 
-                                <div class="account-detail">
-                                    <span>Account Status</span>
-                                    <strong>Not Connected</strong>
-                                </div>
-
-                                <div class="account-detail">
-                                    <span>Member Since</span>
-                                    <strong>Loading...</strong>
-                                </div>
-
-                            </div>
+                            
 
                         </div>
 
@@ -455,18 +453,16 @@
 
 
                         <!-- DASHBOARD NOTICE -->
-                        <div class="dashboard-notice">
+                        <div class="dashboard-notice" id="dashboardNotice">
 
-                            <strong>Account connection pending.</strong>
+    <strong>Connecting your account...</strong>
 
-                            <br>
+    <br>
 
-                            Your personal account details, orders
-                            and notifications will appear here after
-                            secure Firebase integration.
+    Please wait while we retrieve your account information.
 
-                        </div>
-
+</div>
+                        
                     </div>
 
                 </div>
@@ -515,7 +511,8 @@
                     <h4>Client Area</h4>
 
                     <a href="register.html">Create Account</a>
-                    <a href="login.html">Login</a>
+                    
+                    <a href="#" id="logoutButton">Logout</a>
                     <a href="client-dashboard.html">Dashboard</a>
                     <a href="track-order.html">Track Order</a>
 
@@ -539,6 +536,9 @@
 
 
     <script src="asset/js/site.js"></script>
+    
+
+<script type="module" src="asset/js/client-dashboard.js"></script>
 
 </body>
 </html>
