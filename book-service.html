@@ -822,6 +822,8 @@
 
 <!-- BOOKING FORM CATEGORY LOGIC -->
 
+
+
 <script>
 
     const serviceOptions = {
@@ -893,16 +895,35 @@
     };
 
 
+    // FORM ELEMENTS
+
     const categorySelect = document.getElementById("serviceCategory");
 
     const serviceSelect = document.getElementById("serviceType");
 
     const technicalSection = document.getElementById("technicalSection");
 
+    const bookingForm = document.getElementById("bookingForm");
+
+
+    // TECHNICAL INPUTS
+
+    const technicalFields = [
+        "projectStage",
+        "websiteType",
+        "existingWebsite",
+        "technologies",
+        "functionality"
+    ];
+
+
+    // UPDATE SERVICE OPTIONS
 
     function updateServiceOptions() {
 
         const selectedCategory = categorySelect.value;
+
+        // Reset service dropdown.
 
         serviceSelect.innerHTML = "";
 
@@ -918,9 +939,8 @@
 
         serviceSelect.disabled = !selectedCategory;
 
-        if (!selectedCategory) {
-            return;
-        }
+
+        // Load services for selected category.
 
         const options = serviceOptions[selectedCategory] || [];
 
@@ -937,7 +957,7 @@
         });
 
 
-        // Show technical questions only for relevant categories.
+        // Determine whether technical questions are needed.
 
         const technicalCategories = [
             "website-development",
@@ -945,7 +965,13 @@
             "programming"
         ];
 
-        if (technicalCategories.includes(selectedCategory)) {
+        const needsTechnicalDetails =
+            technicalCategories.includes(selectedCategory);
+
+
+        // Show or hide technical section.
+
+        if (needsTechnicalDetails) {
 
             technicalSection.classList.add("active");
 
@@ -953,15 +979,32 @@
 
             technicalSection.classList.remove("active");
 
+            // Clear old technical information.
+
+            technicalFields.forEach(function(fieldId) {
+
+                const field = document.getElementById(fieldId);
+
+                if (field) {
+                    field.value = "";
+                }
+
+            });
+
         }
 
     }
 
 
-    categorySelect.addEventListener("change", updateServiceOptions);
+    // CATEGORY CHANGE EVENT
+
+    categorySelect.addEventListener(
+        "change",
+        updateServiceOptions
+    );
 
 
-    // Prevent selection of past deadlines.
+    // SET MINIMUM DEADLINE TO TODAY
 
     const deadlineInput = document.getElementById("deadline");
 
@@ -973,6 +1016,13 @@
 
     deadlineInput.min = localToday;
 
+
+    // INITIALIZE FORM STATE
+
+    updateServiceOptions();
+
+     
+        
 
 </script>
 
