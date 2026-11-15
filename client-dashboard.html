@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Client Dashboard | Wise Media Freelance</title>
+
+    <meta name="description"
+        content="Manage your Wise Media Freelance account, projects, orders and notifications from your client dashboard.">
+
+    <link rel="stylesheet" href="asset/css/styles.css">
+
+    <style>
+        .dashboard-section {
+            padding: 55px 20px 80px;
+            background: #f7f7f7;
+            min-height: 75vh;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .dashboard-welcome {
+            margin-bottom: 35px;
+        }
+
+        .dashboard-welcome h1 {
+            margin-bottom: 10px;
+        }
+
+        .dashboard-welcome p {
+            color: #777;
+            line-height: 1.7;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-bottom: 35px;
+        }
+
+        .dashboard-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .dashboard-card h3 {
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .dashboard-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #a18449;
+        }
+
+        .dashboard-description {
+            color: #777;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .dashboard-main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .dashboard-panel {
+            background: #fff;
+            padding: 28px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+            margin-bottom: 25px;
+        }
+
+        .dashboard-panel h2 {
+            font-size: 21px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-empty {
+            padding: 30px 15px;
+            text-align: center;
+            background: #fafafa;
+            border-radius: 8px;
+        }
+
+        .dashboard-empty p {
+            color: #777;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .dashboard-button {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #b99a5b;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .dashboard-button:hover {
+            background: #9f8045;
+        }
+
+        .dashboard-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .dashboard-links a {
+            display: block;
+            padding: 14px 15px;
+            background: #fafafa;
+            border-radius: 6px;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .dashboard-links a:hover {
+            background: #f1eadc;
+            color: #92733d;
+        }
+
+        .account-details {
+            display: grid;
+            gap: 15px;
+        }
+
+        .account-detail {
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .account-detail:last-child {
+            border-bottom: none;
+        }
+
+        .account-detail span {
+            display: block;
+            color: #888;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .account-detail strong {
+            font-size: 14px;
+            color: #333;
+            overflow-wrap: anywhere;
+        }
+
+        .dashboard-notice {
+            padding: 15px;
+            background: #fff8e9;
+            border-left: 4px solid #b99a5b;
+            color: #6b5731;
+            font-size: 13px;
+            line-height: 1.7;
+            border-radius: 4px;
+        }
+
+        .dashboard-status {
+            display: inline-block;
+            padding: 6px 10px;
+            background: #f1eadc;
+            color: #8a6b35;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 850px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .dashboard-section {
+                padding: 35px 15px 60px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .dashboard-panel {
+                padding: 20px;
+            }
+
+            .dashboard-number {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+
+        <div class="container header-container">
+
+            <a href="index.html" class="logo">
+                Wise Media Freelance
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Toggle navigation"
+                aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="book-service.html">Book a Service</a>
+                <a href="track-order.html">Track Order</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- CLIENT DASHBOARD -->
+    <main>
+
+        <section class="dashboard-section">
+
+            <div class="dashboard-container">
+
+                <!-- WELCOME -->
+                <div class="dashboard-welcome">
+
+                    <h1>Client Dashboard</h1>
+
+                    <p>
+                        Welcome to your Wise Media Freelance client
+                        workspace. Manage your projects and keep track
+                        of your service requests in one place.
+                    </p>
+
+                    <span class="dashboard-status">
+                        DASHBOARD PREVIEW
+                    </span>
+
+                </div>
+
+
+                <!-- SUMMARY CARDS -->
+                <div class="dashboard-grid">
+
+                    <div class="dashboard-card">
+                        <h3>Total Orders</h3>
+
+                        <div class="dashboard-number">—</div>
+
+                        <p class="dashboard-description">
+                            Your submitted service orders
+                        </p>
+                    </div>
+
+
+                    <div class="dashboard-card">
+                        <h3>Active Projects</h3>
+
+                        <div class="dashboard-number">—</div>
+
+                        <p class="dashboard-description">
+                            Projects currently in progress
+                        </p>
+                    </div>
+
+
+                    <div class="dashboard-card">
+                        <h3>Completed Projects</h3>
+
+                        <div class="dashboard-number">—</div>
+
+                        <p class="dashboard-description">
+                            Successfully completed projects
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- MAIN DASHBOARD CONTENT -->
+                <div class="dashboard-main-grid">
+
+
+                    <!-- LEFT COLUMN -->
+                    <div>
+
+
+                        <!-- RECENT ORDERS -->
+                        <div class="dashboard-panel">
+
+                            <h2>Recent Orders</h2>
+
+                            <div class="dashboard-empty">
+
+                                <p>
+                                    Your recent orders will appear here
+                                    after you submit a service request.
+                                </p>
+
+                                <a
+                                    href="book-service.html"
+                                    class="dashboard-button">
+                                    Book a Service
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ACTIVE PROJECTS -->
+                        <div class="dashboard-panel">
+
+                            <h2>Active Projects</h2>
+
+                            <div class="dashboard-empty">
+
+                                <p>
+                                    You currently have no project
+                                    information to display in this
+                                    dashboard preview.
+                                </p>
+
+                                <a
+                                    href="track-order.html"
+                                    class="dashboard-button">
+                                    Track an Order
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- NOTIFICATIONS -->
+                        <div class="dashboard-panel">
+
+                            <h2>Recent Notifications</h2>
+
+                            <div class="dashboard-empty">
+
+                                <p>
+                                    Important updates about your orders,
+                                    payments and projects will appear here.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RIGHT COLUMN -->
+                    <div>
+
+
+                        <!-- ACCOUNT INFORMATION -->
+                        <div class="dashboard-panel">
+
+                            <h2>Account Information</h2>
+
+                            <div class="account-details">
+
+                                <div class="account-detail">
+                                    <span>Full Name</span>
+                                    <strong>Loading...</strong>
+                                </div>
+
+                                <div class="account-detail">
+                                    <span>Email Address</span>
+                                    <strong>Loading...</strong>
+                                </div>
+
+                                <div class="account-detail">
+                                    <span>Account Status</span>
+                                    <strong>Not Connected</strong>
+                                </div>
+
+                                <div class="account-detail">
+                                    <span>Member Since</span>
+                                    <strong>Loading...</strong>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- QUICK LINKS -->
+                        <div class="dashboard-panel">
+
+                            <h2>Quick Actions</h2>
+
+                            <div class="dashboard-links">
+
+                                <a href="book-service.html">
+                                    + Submit a New Request
+                                </a>
+
+                                <a href="track-order.html">
+                                    Track My Order
+                                </a>
+
+                                <a href="services.html">
+                                    Explore Our Services
+                                </a>
+
+                                <a href="contact.html">
+                                    Contact Support
+                                </a>
+
+                                <a href="login.html">
+                                    Client Login
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DASHBOARD NOTICE -->
+                        <div class="dashboard-notice">
+
+                            <strong>Account connection pending.</strong>
+
+                            <br>
+
+                            Your personal account details, orders
+                            and notifications will appear here after
+                            secure Firebase integration.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div class="footer-brand">
+
+                    <h3>Wise Media Freelance</h3>
+
+                    <p>
+                        Professional freelance solutions designed
+                        to help individuals and businesses communicate,
+                        create and grow.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h4>Quick Links</h4>
+
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Our Services</a>
+                    <a href="book-service.html">Book a Service</a>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h4>Client Area</h4>
+
+                    <a href="register.html">Create Account</a>
+                    <a href="login.html">Login</a>
+                    <a href="client-dashboard.html">Dashboard</a>
+                    <a href="track-order.html">Track Order</a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy; <span id="currentYear"></span>
+                    Wise Media Freelance. All rights reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="asset/js/site.js"></script>
+
+</body>
+</html>
