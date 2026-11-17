@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0B1020">
+
+  <title>Admin Dashboard | Wise Media Freelance</title>
+
+  <style>
+
+    :root {
+      --navy: #0B1020;
+      --navy-light: #151D33;
+      --navy-soft: #202B45;
+      --gold: #B99A5B;
+      --gold-light: #D7BD83;
+      --gold-pale: #F9F6EF;
+      --white: #FFFFFF;
+      --background: #F7F7F8;
+      --text: #242936;
+      --muted: #737B8C;
+      --border: #E5E7EB;
+      --success: #16845B;
+      --danger: #DC4444;
+      --blue: #3569B8;
+      --shadow: 0 8px 28px rgba(11,16,32,.06);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    /* =========================
+       SIDEBAR
+    ========================= */
+
+    .sidebar {
+      width: 260px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      background: var(--navy);
+      color: white;
+      padding: 28px 18px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 8px;
+      margin-bottom: 8px;
+    }
+
+    .brand-mark {
+      width: 43px;
+      height: 43px;
+      background: var(--gold);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      font-weight: 900;
+      font-size: 17px;
+      letter-spacing: -1px;
+    }
+
+    .brand-name strong {
+      display: block;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+
+    .brand-name span {
+      display: block;
+      color: var(--gold-light);
+      font-size: 9px;
+      letter-spacing: 2px;
+      margin-top: 2px;
+    }
+
+    .sidebar-description {
+      color: #AAB2C2;
+      font-size: 11px;
+      padding: 0 9px;
+      margin: 8px 0 35px;
+    }
+
+    .nav-heading {
+      color: #8290A9;
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1.8px;
+      padding: 0 12px;
+      margin-bottom: 12px;
+    }
+
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: #D5DAE4;
+      text-decoration: none;
+      padding: 13px 14px;
+      margin-bottom: 7px;
+      border-radius: 7px;
+      font-size: 13px;
+      transition: .25s;
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      background: rgba(185,154,91,.15);
+      color: var(--gold-light);
+      border-left-color: var(--gold);
+    }
+
+    .nav-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 17px;
+    }
+
+    .sidebar-bottom {
+      margin-top: auto;
+      padding-top: 25px;
+    }
+
+    .sidebar-note {
+      background: rgba(255,255,255,.06);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 18px;
+    }
+
+    .sidebar-note strong {
+      color: var(--gold-light);
+      font-size: 12px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .sidebar-note p {
+      color: #AAB2C2;
+      font-size: 11px;
+    }
+
+    .logout {
+      width: 100%;
+      padding: 12px;
+      background: rgba(220,68,68,.12);
+      color: #FF8585;
+      border: 1px solid rgba(220,68,68,.25);
+      border-radius: 7px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .logout:hover {
+      background: var(--danger);
+      color: white;
+    }
+
+    /* =========================
+       MAIN CONTENT
+    ========================= */
+
+    .main {
+      margin-left: 260px;
+      padding: 28px 35px;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .topbar h1 {
+      color: var(--navy);
+      font-size: 25px;
+      font-family: Georgia, serif;
+    }
+
+    .topbar small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .admin-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 10px 15px;
+      border-radius: 9px;
+    }
+
+    .admin-avatar {
+      width: 39px;
+      height: 39px;
+      background: var(--gold-pale);
+      border: 1px solid #E9D9B8;
+      border-radius: 50%;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .admin-info {
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .admin-info #adminName {
+      font-weight: bold;
+      color: var(--navy);
+    }
+
+    .admin-info #adminEmail {
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    /* =========================
+       WELCOME BANNER
+    ========================= */
+
+    .welcome {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(185,154,91,.22),
+          transparent 35%
+        ),
+        linear-gradient(
+          120deg,
+          #0B1020,
+          #17233D
+        );
+      padding: 38px;
+      border-radius: 13px;
+      color: white;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .welcome-content {
+      position: relative;
+      z-index: 2;
+      max-width: 570px;
+    }
+
+    .welcome-label {
+      display: inline-block;
+      color: var(--gold-light);
+      font-size: 10px;
+      letter-spacing: 2px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .welcome h2 {
+      font-family: Georgia, serif;
+      font-size: 29px;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .welcome p {
+      color: #D1D7E3;
+      font-size: 13px;
+      max-width: 480px;
+    }
+
+    .welcome-decoration {
+      position: absolute;
+      right: 45px;
+      top: 15px;
+      width: 190px;
+      height: 190px;
+      opacity: .9;
+    }
+
+    .welcome-decoration svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* =========================
+       SECTION HEADINGS
+    ========================= */
+
+    .section-heading {
+      margin-bottom: 18px;
+    }
+
+    .section-heading span {
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      color: var(--navy);
+      font-family: Georgia, serif;
+      font-size: 21px;
+      margin-top: 3px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    /* =========================
+       STATISTICS
+    ========================= */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 17px;
+      margin-bottom: 32px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 21px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(11,16,32,.09);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .card-icon {
+      width: 43px;
+      height: 43px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .icon-gold {
+      background: #F9F2E4;
+      color: #9A793A;
+    }
+
+    .icon-blue {
+      background: #EAF1FC;
+      color: #3569B8;
+    }
+
+    .icon-green {
+      background: #E7F5EF;
+      color: #16845B;
+    }
+
+    .icon-red {
+      background: #FCECEC;
+      color: #DC4444;
+    }
+
+    .card h3 {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+
+    .card strong {
+      color: var(--navy);
+      font-size: 29px;
+      font-family: Georgia, serif;
+    }
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================= */
+
+    .section {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 25px;
+    }
+
+    .loading {
+      color: var(--blue);
+      font-size: 12px;
+    }
+
+    /* =========================
+       TABLES
+    ========================= */
+
+    .table-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 20px 0 5px;
+    }
+
+    .search-input {
+      width: 100%;
+      max-width: 390px;
+      padding: 12px 15px;
+      background: #FAFAFB;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      font-size: 13px;
+      outline: none;
+      transition: .2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(185,154,91,.12);
+    }
+
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 18px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .management-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 750px;
+    }
+
+    .management-table th,
+    .management-table td {
+      padding: 15px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+
+    .management-table th {
+      background: #F9F6EF;
+      color: var(--navy);
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .management-table td {
+      color: #50596A;
+    }
+
+    .management-table tbody tr:hover {
+      background: #FCFAF5;
+    }
+
+    .management-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .details-button {
+      padding: 8px 13px;
+      background: var(--navy);
+      color: white;
+      border: 1px solid var(--navy);
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 11px;
+      white-space: nowrap;
+      transition: .2s;
+    }
+
+    .details-button:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy);
+    }
+
+    .classification-note {
+      background: var(--gold-pale);
+      border-left: 3px solid var(--gold);
+      padding: 12px 14px;
+      margin-top: 17px;
+      color: #77633D !important;
+      font-size: 11px !important;
+    }
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(5,10,22,.78);
+      padding: 20px;
+      overflow-y: auto;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal.active {
+      display: block;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 850px;
+      width: 100%;
+      margin: 30px auto;
+      padding: 27px;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.2);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 18px;
+      margin-bottom: 22px;
+    }
+
+    .modal-header h2 {
+      font-family: Georgia, serif;
+      font-size: 22px;
+      color: var(--navy);
+    }
+
+    .modal-close {
+      border: none;
+      background: var(--navy);
+      color: white;
+      padding: 9px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .modal-content h3 {
+      color: var(--navy);
+      font-family: Georgia, serif;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 13px;
+      margin-bottom: 27px;
+    }
+
+    .detail-item {
+      background: #F9F6EF;
+      border: 1px solid #EFE6D4;
+      padding: 15px;
+      border-radius: 7px;
+      overflow-wrap: anywhere;
+    }
+
+    .detail-item strong {
+      display: block;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: .5px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .detail-item span {
+      font-size: 13px;
+      color: var(--navy);
+      font-weight: bold;
+    }
+
+    .booking-card {
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      padding: 18px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      background: #FFF;
+    }
+
+    .booking-card h4 {
+      margin-bottom: 13px;
+      color: var(--navy);
+      font-size: 15px;
+    }
+
+    .booking-card p {
+      margin-bottom: 9px;
+      color: #596273;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .booking-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* =========================
+       RESPONSIVE DESIGN
+    ========================= */
+
+    @media (max-width: 1100px) {
+
+      .main {
+        padding: 25px 22px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .welcome-decoration {
+        right: 10px;
+        opacity: .5;
+      }
+
+    }
+
+    @media (max-width: 700px) {
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 18px;
+      }
+
+      .sidebar-description {
+        margin-bottom: 17px;
+      }
+
+      .sidebar nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+      }
+
+      .sidebar nav a {
+        margin: 0;
+        padding: 11px 9px;
+        font-size: 11px;
+        gap: 7px;
+      }
+
+      .nav-heading {
+        margin-bottom: 9px;
+      }
+
+      .sidebar-bottom {
+        margin-top: 18px;
+        padding-top: 0;
+      }
+
+      .sidebar-note {
+        display: none;
+      }
+
+      .logout {
+        margin-top: 8px;
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 18px 13px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .topbar h1 {
+        font-size: 22px;
+      }
+
+      .admin-profile {
+        width: 100%;
+      }
+
+      .welcome {
+        padding: 25px 20px;
+      }
+
+      .welcome h2 {
+        font-size: 23px;
+      }
+
+      .welcome-decoration {
+        width: 100px;
+        height: 100px;
+        right: 0;
+        top: 5px;
+        opacity: .3;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .card {
+        padding: 15px;
+      }
+
+      .card strong {
+        font-size: 24px;
+      }
+
+      .card-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+      }
+
+      .section {
+        padding: 17px;
+      }
+
+      .section-heading h2 {
+        font-size: 19px;
+      }
+
+      .search-input {
+        max-width: 100%;
+      }
+
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal {
+        padding: 10px;
+      }
+
+      .modal-content {
+        padding: 17px;
+        margin: 10px auto;
+      }
+
+      .modal-header h2 {
+        font-size: 18px;
+      }
+
+    }
+
+    @media (max-width: 360px) {
+
+      .sidebar nav {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- =========================
+       ADMIN SIDEBAR
+  ========================= -->
+
+  <aside class="sidebar">
+
+    <div class="brand">
+
+      <div class="brand-mark">
+        WMF
+      </div>
+
+      <div class="brand-name">
+
+        <strong>WISE MEDIA</strong>
+
+        <span>FREELANCE</span>
+
+      </div>
+
+    </div>
+
+    <p class="sidebar-description">
+      Administration & Management
+    </p>
+
+    <div class="nav-heading">
+      MAIN MENU
+    </div>
+
+    <nav>
+
+      <a href="#overview" class="active">
+        <span class="nav-icon">▦</span>
+        Dashboard Overview
+      </a>
+
+      <a href="#clients">
+        <span class="nav-icon">♙</span>
+        Clients
+      </a>
+
+      <a href="#authors">
+        <span class="nav-icon">✎</span>
+        Authors
+      </a>
+
+      <a href="#orders">
+        <span class="nav-icon">▤</span>
+        Order Requests
+      </a>
+
+      <a href="#services">
+        <span class="nav-icon">◇</span>
+        Services
+      </a>
+
+      <a href="#settings">
+        <span class="nav-icon">⚙</span>
+        Account Settings
+      </a>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+      <div class="sidebar-note">
+
+        <strong>WMF ADMINISTRATION</strong>
+
+        <p>
+          Manage your freelance operations securely
+          from one central workspace.
+        </p>
+
+      </div>
+
+      <button
+        id="adminLogoutButton"
+        class="logout"
+      >
+        ↪ &nbsp; Logout
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =========================
+       MAIN DASHBOARD
+  ========================= -->
+
+  <main class="main">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+      <div>
+
+        <h1>Administration Dashboard</h1>
+
+        <small>
+          Welcome to your WMF management workspace.
+        </small>
+
+      </div>
+
+      <div class="admin-profile">
+
+        <div class="admin-avatar">
+          WM
+        </div>
+
+        <div class="admin-info">
+
+          <div id="adminName">
+            Loading owner...
+          </div>
+
+          <div id="adminEmail">
+            Loading email...
+          </div>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- WELCOME BANNER -->
+
+    <section class="welcome">
+
+      <div class="welcome-content">
+
+        <span class="welcome-label">
+          WISE MEDIA FREELANCE
+        </span>
+
+        <h2>
+          Welcome to Your<br>
+          Administration Centre
+        </h2>
+
+        <p>
+          Oversee your clients, authors, service requests
+          and business activities from one professional
+          management dashboard.
+        </p>
+
+      </div>
+
+      <!-- DECORATIVE BRAND ILLUSTRATION -->
+
+      <div class="welcome-decoration">
+
+        <svg
+          viewBox="0 0 200 200"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+
+          <circle
+            cx="100"
+            cy="100"
+            r="83"
+            stroke="#B99A5B"
+            stroke-width="1.5"
+          />
+
+          <circle
+            cx="100"
+            cy="100"
+            r="65"
+            stroke="#B99A5B"
+            stroke-width="1"
+            stroke-dasharray="4 7"
+          />
+
+          <path
+            d="M100 38 L112 83 L158 100 L112 117 L100 162 L88 117 L42 100 L88 83 Z"
+            fill="#B99A5B"
+            fill-opacity=".18"
+            stroke="#D7BD83"
+            stroke-width="2"
+          />
+
+          <circle
+            cx="100"
+            cy="100"
+            r="19"
+            fill="#B99A5B"
+          />
+
+          <path
+            d="M91 100 L97 106 L110 92"
+            stroke="#0B1020"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+        </svg>
+
+      </div>
+
+    </section>
+
+
+    <!-- DASHBOARD STATISTICS -->
+
+    <div class="section-heading" id="overview">
+
+      <span>Business Overview</span>
+
+      <h2>Dashboard Statistics</h2>
+
+      <p>
+        A summary of your current WMF activities.
+      </p>
+
+    </div>
+
+
+    <section class="stats">
+
+      <div class="card">
+
+        <div class="card-top">
+
+          <div class="card-icon icon-gold">
+            ♙
+          </div>
+
+        </div>
+
+        <h3>Total Clients</h3>
+
+        <strong id="totalClients">—</strong>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-top">
+
+          <div class="card-icon icon-blue">
+            ✎
+          </div>
+
+        </div>
+
+        <h3>Total Authors</h3>
+
+        <strong id="totalAuthors">—</strong>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-top">
+
+          <div class="card-icon icon-green">
+            ▤
+          </div>
+
+        </div>
+
+        <h3>Order Requests</h3>
+
+        <strong id="totalOrders">—</strong>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-top">
+
+          <div class="card-icon icon-red">
+            ◷
+          </div>
+
+        </div>
+
+        <h3>Pending Orders</h3>
+
+        <strong id="pendingOrders">—</strong>
+
+      </div>
+
+    </section>
+
+
+    <!-- CLIENT MANAGEMENT -->
+
+    <section class="section" id="clients">
+
+      <div class="section-heading">
+
+        <span>Customer Management</span>
+
+        <h2>Client Management</h2>
+
+        <p>
+          Manage accounts that have requested non-writing services.
+        </p>
+
+      </div>
+
+      <p id="clientsStatus" class="loading">
+        Loading client accounts...
+      </p>
+
+
+      <div class="table-toolbar">
+
+        <input
+          type="search"
+          id="clientSearchInput"
+          class="search-input"
+          placeholder="Search by name, email, phone or service..."
+          aria-label="Search client accounts"
+        >
+
+      </div>
+
+
+      <div class="table-wrapper">
+
+        <table class="management-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Full Name</th>
+
+              <th>Email Address</th>
+
+              <th>Phone Number</th>
+
+              <th>Services Requested</th>
+
+              <th>Bookings</th>
+
+              <th>Actions</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="clientsTableBody">
+
+            <tr>
+
+              <td colspan="6">
+                Loading client records...
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <p class="classification-note">
+        A person who requests both writing and non-writing
+        services can appear in both management sections.
+      </p>
+
+    </section>
+
+
+    <!-- AUTHOR MANAGEMENT -->
+
+    <section class="section" id="authors">
+
+      <div class="section-heading">
+
+        <span>Writing Department</span>
+
+        <h2>Author Management</h2>
+
+        <p>
+          Manage accounts that have requested Writing Services.
+        </p>
+
+      </div>
+
+      <p id="authorsStatus" class="loading">
+        Loading author accounts...
+      </p>
+
+
+      <div class="table-wrapper">
+
+        <table class="management-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Full Name</th>
+
+              <th>Email Address</th>
+
+              <th>Phone Number</th>
+
+              <th>Writing Services</th>
+
+              <th>Bookings</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="authorsTableBody">
+
+            <tr>
+
+              <td colspan="5">
+                Loading author records...
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <p class="classification-note">
+        Only accounts with Writing Services bookings
+        are classified as Authors.
+      </p>
+
+    </section>
+
+
+    <!-- ORDER MANAGEMENT -->
+
+    <section class="section" id="orders">
+
+      <div class="section-heading">
+
+        <span>Project Management</span>
+
+        <h2>Order Requests</h2>
+
+        <p>
+          Monitor booking requests and project activities.
+        </p>
+
+      </div>
+
+      <p id="ordersStatus" class="loading">
+        Loading booking statistics...
+      </p>
+
+    </section>
+
+
+    <!-- SERVICE MANAGEMENT -->
+
+    <section class="section" id="services">
+
+      <div class="section-heading">
+
+        <span>Business Operations</span>
+
+        <h2>Service Management</h2>
+
+        <p>
+          Manage the professional services offered by WMF.
+        </p>
+
+      </div>
+
+      <p>
+        Service management will be integrated here.
+      </p>
+
+    </section>
+
+
+    <!-- ADMINISTRATOR SETTINGS -->
+
+    <section class="section" id="settings">
+
+      <div class="section-heading">
+
+        <span>Security & Access</span>
+
+        <h2>Administrator Account</h2>
+
+        <p>
+          Your administrator account information and access status.
+        </p>
+
+      </div>
+
+      <p id="adminAccountStatus">
+        Verifying administrator account...
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         CLIENT DETAILS MODAL
+    ========================= -->
+
+    <div
+      class="modal"
+      id="clientDetailsModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="clientModalTitle"
+    >
+
+      <div class="modal-content">
+
+        <div class="modal-header">
+
+          <h2 id="clientModalTitle">
+            Client Details
+          </h2>
+
+          <button
+            type="button"
+            class="modal-close"
+            id="closeClientModal"
+          >
+            Close
+          </button>
+
+        </div>
+
+
+        <h3>
+          Client Profile
+        </h3>
+
+
+        <div class="detail-grid">
+
+          <div class="detail-item">
+
+            <strong>Full Name</strong>
+
+            <span id="detailFullName">—</span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>Email Address</strong>
+
+            <span id="detailEmail">—</span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>Phone Number</strong>
+
+            <span id="detailPhone">—</span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>Account Role</strong>
+
+            <span id="detailRole">—</span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>Account Status</strong>
+
+            <span id="detailStatus">—</span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>Registration Date</strong>
+
+            <span id="detailCreatedAt">—</span>
+
+          </div>
+
+        </div>
+
+
+        <h3>
+          Booking History
+        </h3>
+
+
+        <div id="clientBookingHistory">
+
+          <p>
+            Loading booking history...
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- ADMIN DASHBOARD SCRIPT -->
+
+  <script
+    type="module"
+    src="./asset/js/admin-dashboard.js">
+  </script>
+
+</body>
+
+</html>
